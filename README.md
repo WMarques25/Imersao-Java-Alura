@@ -4,9 +4,9 @@
 
 Utilizando Java no VS Code para acessar e consumir API do IMDB (Top 250 Filmes).
 
-[App](alura-stickers\src\App.java) - Aplicação principal, acessando e exibindo os dados da API.
+[App](https://github.com/WMarques25/Imersao-Java-Alura/blob/main/alura-stickers/src/App.java) - Aplicação principal, acessando e exibindo os dados da API.
 
-[Parser](alura-stickers\src\JsonParser.java) - Classe para "parsear", filtrando as informações do arquivo Json
+[Parser](https://github.com/WMarques25/Imersao-Java-Alura/blob/main/alura-stickers/src/JsonParser.java) - Classe para "parsear", filtrando as informações do arquivo Json
 
 ### Desafios
 
