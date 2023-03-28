@@ -1,6 +1,8 @@
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics2D;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.InputStream;
@@ -26,10 +28,19 @@ public class ZapStickers {
         // nova fonte
         var fonte = new Font(Font.SANS_SERIF, Font.BOLD, 128);
         graphics.setFont(fonte);
-        graphics.setColor(Color.blue);
+        graphics.setColor(Color.YELLOW);
 
         // escrever frase na nova imagem
-        graphics.drawString("Bom", largura*0.37f, altura*1.13f);
+        String texto = "Bom";
+        FontMetrics fontMetrics = graphics.getFontMetrics();
+        Rectangle2D retangulo = fontMetrics.getStringBounds(texto, graphics);
+        int alturaTexto = (int)retangulo.getHeight();
+        int larguraTexto = (int)retangulo.getWidth();
+
+        int posXTexto = (largura - larguraTexto)/2;
+        float posYTexto = (novaAltura - altura)/2 + altura + alturaTexto/3;
+
+        graphics.drawString(texto, posXTexto, posYTexto);
 
         // salvar em arquivo
         ImageIO.write(novaImagen, "png", new File(nomeArquivo));

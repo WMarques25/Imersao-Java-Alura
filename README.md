@@ -29,10 +29,12 @@ Utilizando Java no VS Code para acessar e consumir API do IMDB (Top 250 Filmes).
 
 3 - Utilizando variavel de ambiente para esconder chave de acesso.
 
+    // Definindo a variavel de ambiente no terminal.
     Utilizei no PowerShell:
-    $env:IMDB_KEY = "chave"                                         // Definindo a variavel de ambiente no terminal.
+    $env:IMDB_KEY = "chave"                                         
 
-    String url = "https://imdb-api.com/en/API/TopTVs/" + IMBD_KEY;  // Concatenando url + Chave de acesso da API no codigo.
+    // Concatenando url + Chave de acesso da API no codigo.
+    String url = "https://imdb-api.com/en/API/TopTVs/" + IMBD_KEY;  
 
 ## Aula 2
 
@@ -44,7 +46,25 @@ Importando imagens(arquivo local ou url), transformando em uma nova imagem .png 
 
 1 - Criando diretório para saida das imagens caso não exista.
 
+        // Gerando o diretório "saida/".
         var diretorio = new File("saida/");
-        diretorio.mkdir();                                  // Gerando o diretório "saida/".
+        diretorio.mkdir();                                  
 
-        gerador.Criar(inputStream, "saida/" + nomeArquivo); // Criando a imagem no diretório "saida/" + nome da série.
+        // Criando a imagem no diretório "saida/" + nome da série.
+        gerador.Criar(inputStream, "saida/" + nomeArquivo); 
+
+2 - Centralizando o texto na nova imagem.
+
+        // Texto + medidas
+        String texto = "Bom";
+        FontMetrics fontMetrics = graphics.getFontMetrics();
+        Rectangle2D retangulo = fontMetrics.getStringBounds(texto, graphics);
+        int alturaTexto = (int)retangulo.getHeight();
+        int larguraTexto = (int)retangulo.getWidth();
+
+        // Posição do texto em X e Y.
+        int posXTexto = (largura - larguraTexto)/2;
+        float posYTexto = (novaAltura - altura)/2 + altura + alturaTexto/3;
+
+        // Desenhando o texto na nova imagem.
+        graphics.drawString(texto, posXTexto, posYTexto);
