@@ -33,3 +33,18 @@ Utilizando Java no VS Code para acessar e consumir API do IMDB (Top 250 Filmes).
     $env:IMDB_KEY = "chave"                                         // Definindo a variavel de ambiente no terminal.
 
     String url = "https://imdb-api.com/en/API/TopTVs/" + IMBD_KEY;  // Concatenando url + Chave de acesso da API no codigo.
+
+## Aula 2
+
+Importando imagens(arquivo local ou url), transformando em uma nova imagem .png com um texto em fundo transparente.
+
+[Gerador de Stickers](https://github.com/WMarques25/Imersao-Java-Alura/blob/main/alura-stickers/src/ZapStickers.java) - Classe geradora de Stickers para WhatsApp.
+
+### Desafios Aula 2
+
+1 - Criando diretório para saida das imagens caso não exista.
+
+        var diretorio = new File("saida/");
+        diretorio.mkdir();                                  // Gerando o diretório "saida/".
+
+        gerador.Criar(inputStream, "saida/" + nomeArquivo); // Criando a imagem no diretório "saida/" + nome da série.
