@@ -11,8 +11,12 @@ public class App {
     public static void main(String[] args) throws Exception {
 
         // fazer uma conex√£o HTTP e buscar os top 3 SÈries de acordo com IMDB
-        // String url = "https://imdb-api.com/en/API/Top250Movies/ + chave";  (API da imdb com instabilidade, usando arquivo pronto disponibilizado pela Alura)
         String url = "https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/TopTVs.json";
+        String IMDB_KEY = System.getenv("IMDB_KEY");
+        System.out.println(IMDB_KEY);
+
+        // String url = "https://imdb-api.com/en/API/Top250Movies/" + IMBD_KEY;  (API da imdb com instabilidade, usando arquivo pronto disponibilizado pela Alura)
+        
         URI endereco = URI.create(url);
         var client = HttpClient.newHttpClient();
         var request = HttpRequest.newBuilder(endereco).GET().build();
@@ -26,10 +30,15 @@ public class App {
         // exibir e manipular os dados 
         for (int i = 0; i < 3; i++) {
             Map<String,String> filme = listaDeFilmes.get(i);
-            System.out.println(filme.get("title"));
-            System.out.println(filme.get("image"));
-            System.out.println(filme.get("imDbRating"));
-            System.out.println();
+            System.out.println("\u001b[37;1mTitulo:\u001b[44m " + filme.get("title") + " \u001b[0m");
+            System.out.println("\u001b[37;1mPoster:" + " \u001b[0m" + filme.get("image"));
+            double imDbRating = Double.parseDouble(filme.get("imDbRating"));
+            System.out.println(imDbRating);
+
+            for( int j = 0; j < (int)imDbRating; j++){
+                System.out.print("??");
+            }
+            System.out.println("\n");
         }
     }
 }
