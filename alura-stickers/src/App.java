@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.net.URI;
 import java.net.URL;
@@ -13,7 +14,7 @@ public class App {
     public static void main(String[] args) throws Exception {
 
         // fazer uma conexão HTTP e buscar os top 3 Séries de acordo com IMDB
-        String url = "https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/TopTVs.json";
+        String url = "https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/MostPopularTVs.json";
         String IMDB_KEY = System.getenv("IMDB_KEY");
         System.out.println(IMDB_KEY);
 
@@ -42,14 +43,24 @@ public class App {
             String titulo = serie.get("title");
 
             InputStream inputStream = new URL(urlImage).openStream();
-            String nomeArquivo = titulo + ".png";
-
-            gerador.Criar(inputStream, "saida/" + nomeArquivo);
+            String nomeArquivo = titulo + ".png";      
 
             System.out.println("\u001b[37;1mTitulo:\u001b[44m " + serie.get("title") + " \u001b[0m");
             System.out.println("\u001b[37;1mPoster:" + " \u001b[0m" + serie.get("image"));
             double imDbRating = Double.parseDouble(serie.get("imDbRating"));
             System.out.println(imDbRating);
+
+            String texto;
+            InputStream selo;
+            if (imDbRating >= 8.5 ){
+                texto = "Bom";
+                selo = new FileInputStream("selos/aprovado.png");
+            }else{
+                texto = "meh";
+                selo = new FileInputStream("selos/reprovado.png");
+            }
+
+            gerador.Criar(inputStream, "saida/" + nomeArquivo, texto, selo);
 
             for( int j = 0; j < (int)imDbRating; j++){
                 System.out.print("⭐️");
