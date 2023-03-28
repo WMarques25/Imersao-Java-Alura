@@ -97,7 +97,7 @@ Importando imagens(arquivo local ou url), transformando em uma nova imagem .png 
 
 5 - Modificando texto de acordo com o Rating.
 
-        // Atribuindo o texto de acordo com imDbRating no [App.java](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula2/alura-stickers/src/ZapStickers.java)
+        // Atribuindo o texto de acordo com imDbRating no App.java
         String texto;
         if (imDbRating >= 8.5 ){
             texto = "Bom";
