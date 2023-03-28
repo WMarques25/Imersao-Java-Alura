@@ -11,5 +11,7 @@ Utilizando Java no VS Code para acessar e consumir API do IMDB (Top 250 Filmes).
 ### Desafios
 
 1 - Utilizando End-Point para acessar as top séries do site.
+
 2 - Configurando a estética da apresentação das informações.
+
 3 - Utilizando variavel de ambiente para esconder chave de acesso.
