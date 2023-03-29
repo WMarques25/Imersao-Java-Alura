@@ -17,7 +17,7 @@ public class ClienteHttp {
             return response.body();
         
         } catch(IOException | InterruptedException ex){
-            throw new RuntimeException(ex);
+            throw new ClienteHttpExeption("\nErro na consulta da URL\n(╯°□°)╯︵ ┻━┻\n");
 
         }
     }

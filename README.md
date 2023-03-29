@@ -131,23 +131,23 @@ Importando imagens(arquivo local ou url), transformando em uma nova imagem .png 
 
 ## Aula 3
 
-Refatorando o [App](https://github.com/WMarques25/Imersao-Java-Alura/blob/3dff980fc280561a3f0af85d8b8ac54fe2ffb818/alura-stickers/src/App.java), transferindo parte do código em novas classes.
+Refatorando o [App](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula3/alura-stickers/src/App.java), transferindo parte do código em novas classes.
 
 Criando classes para:
 
-- [Conteudo](https://github.com/WMarques25/Imersao-Java-Alura/blob/3dff980fc280561a3f0af85d8b8ac54fe2ffb818/alura-stickers/src/Conteudo.java)
+- [Conteudo](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula3/alura-stickers/src/Conteudo.java)
 
-- [ClienteHttp](https://github.com/WMarques25/Imersao-Java-Alura/blob/3dff980fc280561a3f0af85d8b8ac54fe2ffb818/alura-stickers/src/ClienteHttp.java)
+- [ClienteHttp](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula3/alura-stickers/src/ClienteHttp.java)
 
-Criando uma [interface](https://github.com/WMarques25/Imersao-Java-Alura/blob/3dff980fc280561a3f0af85d8b8ac54fe2ffb818/alura-stickers/src/ExtratorConteudo.java) para as novas classes extratoras:
+Criando uma [interface](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula3/alura-stickers/src/ExtratorConteudo.java) para as novas classes extratoras:
 
-- [ExtratorConteudoIMDB](https://github.com/WMarques25/Imersao-Java-Alura/blob/3dff980fc280561a3f0af85d8b8ac54fe2ffb818/alura-stickers/src/ExtratorConteudoIMDB.java)
+- [ExtratorConteudoIMDB](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula3/alura-stickers/src/ExtratorConteudoIMDB.java)
 
-- [ExtratorConteudoNasa](https://github.com/WMarques25/Imersao-Java-Alura/blob/3dff980fc280561a3f0af85d8b8ac54fe2ffb818/alura-stickers/src/ExtratorConteudoNasa.java);
+- [ExtratorConteudoNasa](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula3/alura-stickers/src/ExtratorConteudoNasa.java)
 
 ### Modificado da Aula 2
 
-#### Algumas modificações do [App](https://github.com/WMarques25/Imersao-Java-Alura/blob/3dff980fc280561a3f0af85d8b8ac54fe2ffb818/alura-stickers/src/App.java)
+#### Algumas modificações do [App](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula3/alura-stickers/src/App.java)
 
 1. Criado a classe ClienteHttp, alteramos todo o código que buscava os dados em .json para im objeto do tipo ClienteHttp.
 
@@ -163,7 +163,7 @@ Criando uma [interface](https://github.com/WMarques25/Imersao-Java-Alura/blob/3d
         // String url = "https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/MostPopularTVs.json";
         // ExtratorConteudo extrator = new ExtratorConteudoIMDB();
 
-        String url = "https://api.nasa.gov/planetary/apod?api_key=" + API_KEY + "&start_date=2022-07-4&end_date=2022-07-10";  // (API da imdb com instabilidade, usando arquivo pronto disponibilizado pela Alura)
+        String url = "https://api.nasa.gov/planetary/apod?api_key=" + API_KEY + "&start_date=2022-07-4&end_date=2022-07-10";
         ExtratorConteudo extrator = new ExtratorConteudoNasa();
 
 3. Criação de uma lista de conteudos
@@ -187,7 +187,7 @@ Criando uma [interface](https://github.com/WMarques25/Imersao-Java-Alura/blob/3d
             System.out.println("\n");
         }
 
-#### Algumas modificações do [Gerador de Figurinhas](https://github.com/WMarques25/Imersao-Java-Alura/blob/3dff980fc280561a3f0af85d8b8ac54fe2ffb818/alura-stickers/src/ZapStickers.java)
+#### Algumas modificações do [Gerador de Figurinhas](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula3/alura-stickers/src/ZapStickers.java)
 
 1. Retirada a sobreposição de selos("aprovado"/"reprovado").
 
@@ -197,6 +197,74 @@ Criando uma [interface](https://github.com/WMarques25/Imersao-Java-Alura/blob/3d
 
 3. Diretório de saida e formato da imagem definidos no ImageIO.write().
 
-    ImageIO.write(novaImagen, "png", new File("saida/" + nomeArquivo + ".png"));
+        ImageIO.write(novaImagen, "png", new File("saida/" + nomeArquivo + ".png"));
 
 ### Desafios Aula 3
+
+1. Transformando a classe Conteudo para record.
+
+        public record Conteudo(String titulo, String urlImagem){}
+
+    Nos metodos que retornam o titulo e a url de Conteudo é retirado a expressão "get"
+
+    .~~getT~~**t**itulo()
+
+    .~~getU~~**u**rlImage()
+
+2. Criando classe [ClienteHttpException](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula3/alura-stickers/src/ClienteHttpException.java).
+
+        public class ClienteHttpExeption extends RuntimeException{
+
+            public ClienteHttpExeption(String msg) {
+                super(msg);
+                
+            }
+
+        }
+
+    Alteração do [ClienteHttp](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula3/alura-stickers/src/ClienteHttp.java).
+
+        catch(IOException | InterruptedException ex){
+            throw new ClienteHttpExeption("\nErro na consulta da URL\n(╯°□°)╯︵ ┻━┻\n");
+
+        }
+
+3. Utilizando .stram() e expressão lambda nos Extratores.
+
+        public List<Conteudo> extrairConteudos(String json){
+
+        // extrair só os dados que interessam (titulo, poster, classificação)
+        var parser = new JsonParser();
+        List<Map<String, String>> listaDeAtributos = parser.parse(json);
+
+        return listaDeAtributos.stream()
+            .map(atributos -> new Conteudo(atributos.get("title"), atributos.get("url")))
+            .toList();
+
+        }
+
+4. Utilizando uma enum [API](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula3/alura-stickers/src/API.java) para guardar as urls das APIs.
+
+        public enum API {
+            IMDB_TOP_TVS("https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/Top250TVs.json", new ExtratorConteudoIMDB()),
+            NASA_APOD("https://api.nasa.gov/planetary/apod?api_key=" + System.getenv("API_KEY") + "&start_date=2022-07-4&end_date=2022-07-10", new ExtratorConteudoNasa()),
+            IMDB_POPULAR_TVS("https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/MostPopularTVs.json", new ExtratorConteudoIMDB());
+
+            private String url;
+            private ExtratorConteudo ext;
+
+            API(String url, ExtratorConteudo ext){
+                this.url = url;
+                this.ext = ext;
+                
+            }
+
+            public String getUrl() {
+                return url;
+            }
+
+            public ExtratorConteudo getExt() {
+                return ext;
+            }
+
+        }

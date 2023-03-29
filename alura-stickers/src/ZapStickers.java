@@ -30,7 +30,7 @@ public class ZapStickers {
         graphics.drawImage(imgOriginal, 0, 0, null);
         
         // nova fonte
-        var fonte = new Font("Impact", Font.BOLD, 62);
+        var fonte = new Font("Impact", Font.BOLD, 40);
         graphics.setFont(fonte);
         graphics.setColor(Color.YELLOW);
 
@@ -56,7 +56,7 @@ public class ZapStickers {
         graphics.setTransform(transform);
 
         // Definindo largura do contorno.
-        var outLineStoke = new BasicStroke(largura * 0.004f);
+        var outLineStoke = new BasicStroke(largura * 0.002f);
         graphics.setStroke(outLineStoke);
 
         // Definindo cor e desenhando o contorno.
