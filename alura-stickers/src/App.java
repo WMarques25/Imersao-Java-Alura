@@ -1,70 +1,46 @@
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.InputStream;
-import java.net.URI;
 import java.net.URL;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.net.http.HttpResponse.BodyHandlers;
 import java.util.List;
-import java.util.Map;
 
 public class App {
     public static void main(String[] args) throws Exception {
 
         // fazer uma conexão HTTP e buscar os top 3 Séries de acordo com IMDB
-        String url = "https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/MostPopularTVs.json";
-        String IMDB_KEY = System.getenv("IMDB_KEY");
-        System.out.println(IMDB_KEY);
+        String API_KEY = System.getenv("API_KEY");
+        System.out.println(API_KEY);
 
-        // String url = "https://imdb-api.com/en/API/TopTVs/" + IMBD_KEY;  (API da imdb com instabilidade, usando arquivo pronto disponibilizado pela Alura)
+        // String url = "https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/MostPopularTVs.json";
+        // ExtratorConteudo extrator = new ExtratorConteudoIMDB();
+
+        String url = "https://api.nasa.gov/planetary/apod?api_key=" + API_KEY + "&start_date=2022-07-4&end_date=2022-07-10";  // (API da imdb com instabilidade, usando arquivo pronto disponibilizado pela Alura)
+        ExtratorConteudo extrator = new ExtratorConteudoNasa();
+
+        var http = new ClienteHttp();
+        String json = http.buscaDados(url);
+
         
-        URI endereco = URI.create(url);
-        var client = HttpClient.newHttpClient();
-        var request = HttpRequest.newBuilder(endereco).GET().build();
-        HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
-        String body = response.body();
-
-        // extrair só os dados que interessam (titulo, poster, classificação)
-        var parser = new JsonParser();
-        List<Map<String, String>> listaDeSeries = parser.parse(body);
-
         // exibir e manipular os dados 
+        
+        List<Conteudo> conteudos = extrator.extrairConteudos(json);
+
         var gerador = new ZapStickers();
 
         var diretorio = new File("saida/");
         diretorio.mkdir();
 
         for (int i = 0; i < 3; i++) {
-            Map<String,String> serie = listaDeSeries.get(i);
 
-            String urlImage = serie.get("image");
-            String titulo = serie.get("title");
+            Conteudo conteudo = conteudos.get(i);
+           
+            InputStream inputStream = new URL(conteudo.getUrlImagem()).openStream();
+            String nomeArquivo = conteudo.getTitulo();      
 
-            InputStream inputStream = new URL(urlImage).openStream();
-            String nomeArquivo = titulo + ".png";      
+            System.out.println("\u001b[37;1mTitulo:\u001b[44m " + conteudo.getTitulo() + " \u001b[0m");
+            System.out.println("\u001b[37;1mPoster:" + " \u001b[0m" + conteudo.getUrlImagem());
+            
+            gerador.Criar(inputStream, nomeArquivo);
 
-            System.out.println("\u001b[37;1mTitulo:\u001b[44m " + serie.get("title") + " \u001b[0m");
-            System.out.println("\u001b[37;1mPoster:" + " \u001b[0m" + serie.get("image"));
-            double imDbRating = Double.parseDouble(serie.get("imDbRating"));
-            System.out.println(imDbRating);
-
-            String texto;
-            InputStream selo;
-            if (imDbRating >= 8.5 ){
-                texto = "Bom";
-                selo = new FileInputStream("selos/aprovado.png");
-            }else{
-                texto = "meh";
-                selo = new FileInputStream("selos/reprovado.png");
-            }
-
-            gerador.Criar(inputStream, "saida/" + nomeArquivo, texto, selo);
-
-            for( int j = 0; j < (int)imDbRating; j++){
-                System.out.print("⭐️");
-            }
             System.out.println("\n");
         }
     }
