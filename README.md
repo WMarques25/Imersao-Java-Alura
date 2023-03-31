@@ -308,6 +308,148 @@ CriaÃ§Ã£o do link e extrator de conteudo da nova API
 
 - [Linguagem.java](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula4/linguagens.api/src/main/java/com/wmarques/linguagens/api/Linguagem.java)
 
+        package com.wmarques.linguagens.api;
+
+        import org.springframework.data.annotation.Id;
+        import org.springframework.data.mongodb.core.mapping.Document;
+
+        @Document(collection = "Lingdb")
+        public class Linguagem {
+            
+            @Id
+            private String id;
+            private String title;
+            private String image;
+            private int ranking;
+
+
+            public Linguagem(String title, String image, int ranking) {
+                this.title = title;
+                this.image = image;
+                this.ranking = ranking;
+            }
+            
+            public String getId() {
+                return id;
+            }
+            public String getTitle() {
+                return title;
+            }
+            public String getImage() {
+                return image;
+            }
+            public int getRanking() {
+                return ranking;
+            }
+
+            public void setId(String id) {
+                this.id = id;
+            }  
+
+        }
+
 - [LinguagemController.java](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula4/linguagens.api/src/main/java/com/wmarques/linguagens/api/LinguagemController.java)
 
+        package com.wmarques.linguagens.api;
+
+        import java.util.List;
+        import org.springframework.beans.factory.annotation.Autowired;
+        import org.springframework.data.mongodb.repository.Update;
+        import org.springframework.http.HttpStatus;
+        import org.springframework.web.bind.annotation.DeleteMapping;
+        import org.springframework.web.bind.annotation.GetMapping;
+        import org.springframework.web.bind.annotation.Mapping;
+        import org.springframework.web.bind.annotation.PathVariable;
+        import org.springframework.web.bind.annotation.PostMapping;
+        import org.springframework.web.bind.annotation.PutMapping;
+        import org.springframework.web.bind.annotation.RequestBody;
+        import org.springframework.web.bind.annotation.RestController;
+        import org.springframework.web.server.ResponseStatusException;
+
+        @RestController
+        public class LinguagemController {
+            
+            @Autowired
+            private LinguagemRepository repositorio;
+
+            @GetMapping("/linguagens") // Buscando tds as linguagens
+            public List<Linguagem> obterLinguagens(){
+                List<Linguagem> linguagens = repositorio.findAll();
+                return linguagens;
+                
+            }
+
+            @PostMapping("/linguagens") // Adicionando linguagem
+            public Linguagem cadastrarLinguagem(@RequestBody Linguagem linguagem){
+                Linguagem newSave = repositorio.save(linguagem);
+                return newSave;
+            }
+        }
+
 - [LinguagemRepository.java](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula4/linguagens.api/src/main/java/com/wmarques/linguagens/api/LinguagemRepository.java)
+
+        package com.wmarques.linguagens.api;
+
+        import org.springframework.data.mongodb.repository.MongoRepository;
+
+        public interface LinguagemRepository extends 
+            MongoRepository<Linguagem, String>{
+            
+        }
+
+### Desafios
+
+1. Finalizando CRUD([LinguagemController.java](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula4/linguagens.api/src/main/java/com/wmarques/linguagens/api/LinguagemController.java)) das linguagens na API
+
+    - Lendo linguagem especificada por id
+
+        @GetMapping("/linguagens/{id}")
+        public Linguagem obterLinguagemPorId(@PathVariable String id){
+            return repositorio.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        }
+
+    - Atualizando linguagem por id
+
+        @PutMapping("/linguagens/{id}")
+        public Linguagem atualizarLinguagemPorId(@PathVariable String id , @RequestBody Linguagem linguagem){
+            repositorio.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+            linguagem.setId(id);
+
+            Linguagem linguagemSalva = repositorio.save(linguagem);
+            return linguagemSalva;
+        }
+
+    - Deletando linguagem por id
+
+        @DeleteMapping("/linguagens/{id}")
+        public void excluirLinguagem(@PathVariable String id){
+            repositorio.deleteById(id);
+        }
+
+2. Ordenando a lista de linguagens
+
+    - Criando método de busca ordenada
+
+        public interface LinguagemRepository extends MongoRepository<Linguagem, String>{
+            List<Linguagem> findByOrderByRanking();
+        }
+
+    - Utilizando o novo método na busca  ~~.findAll();~~
+
+        @GetMapping("/linguagens") // Buscando tds as linguagens
+        public List<Linguagem> obterLinguagens(){
+            List<Linguagem> linguagens = repositorio.findByOrderByRanking();
+            return linguagens;
+
+        }
+
+3. Alterando status da linguagem criada
+
+        @PostMapping("/linguagens") // Adicionando linguagem
+        public ResponseEntity<Linguagem> cadastrarLinguagem(@RequestBody Linguagem linguagem){
+            Linguagem newSave = repositorio.save(linguagem);
+            return new ResponseEntity<>(newSave, HttpStatus.CREATED);
+
+        }

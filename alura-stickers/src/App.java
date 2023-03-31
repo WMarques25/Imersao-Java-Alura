@@ -24,7 +24,7 @@ public class App {
         var diretorio = new File("saida/");
         diretorio.mkdir();
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
 
             Conteudo conteudo = conteudos.get(i);
            
