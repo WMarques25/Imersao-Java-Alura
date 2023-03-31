@@ -403,53 +403,53 @@ Criação do link e extrator de conteudo da nova API
 
     - Lendo linguagem especificada por id
 
-         @GetMapping("/linguagens/{id}")
-        public Linguagem obterLinguagemPorId(@PathVariable String id){
-            return repositorio.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        }
+                @GetMapping("/linguagens/{id}")
+                public Linguagem obterLinguagemPorId(@PathVariable String id){
+                    return repositorio.findById(id)
+                        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+                }
 
     - Atualizando linguagem por id
 
-         @PutMapping("/linguagens/{id}")
-        public Linguagem atualizarLinguagemPorId(@PathVariable String id , @RequestBody Linguagem linguagem){
-            repositorio.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-            linguagem.setId(id);
+                @PutMapping("/linguagens/{id}")
+                public Linguagem atualizarLinguagemPorId(@PathVariable String id , @RequestBody Linguagem linguagem){
+                    repositorio.findById(id)
+                        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+                    linguagem.setId(id);
 
-            Linguagem linguagemSalva = repositorio.save(linguagem);
-            return linguagemSalva;
-        }
+                    Linguagem linguagemSalva = repositorio.save(linguagem);
+                    return linguagemSalva;
+                }
 
     - Deletando linguagem por id
 
-         @DeleteMapping("/linguagens/{id}")
-        public void excluirLinguagem(@PathVariable String id){
-            repositorio.deleteById(id);
-        }
+                @DeleteMapping("/linguagens/{id}")
+                public void excluirLinguagem(@PathVariable String id){
+                    repositorio.deleteById(id);
+                }
 
 2. Ordenando a lista de linguagens
 
     - Criando método de busca ordenada
 
-         public interface LinguagemRepository extends MongoRepository<Linguagem, String>{
-            List<Linguagem> findByOrderByRanking();
-        }
+                 public interface LinguagemRepository extends MongoRepository<Linguagem, String>{
+                    List<Linguagem> findByOrderByRanking();
+                }
 
     - Utilizando o novo método na busca  ~~.findAll();~~
 
-         @GetMapping("/linguagens") // Buscando tds as linguagens
-        public List<Linguagem> obterLinguagens(){
-            List<Linguagem> linguagens = repositorio.findByOrderByRanking();
-            return linguagens;
+                @GetMapping("/linguagens") // Buscando tds as linguagens
+                public List<Linguagem> obterLinguagens(){
+                    List<Linguagem> linguagens = repositorio.findByOrderByRanking();
+                    return linguagens;
 
-        }
+                }
 
 3. Alterando status da linguagem criada
 
-         @PostMapping("/linguagens") // Adicionando linguagem
-        public ResponseEntity<Linguagem> cadastrarLinguagem(@RequestBody Linguagem linguagem){
-            Linguagem newSave = repositorio.save(linguagem);
-            return new ResponseEntity<>(newSave, HttpStatus.CREATED);
+                @PostMapping("/linguagens") // Adicionando linguagem
+                public ResponseEntity<Linguagem> cadastrarLinguagem(@RequestBody Linguagem linguagem){
+                    Linguagem newSave = repositorio.save(linguagem);
+                    return new ResponseEntity<>(newSave, HttpStatus.CREATED);
 
-        }
+                }
