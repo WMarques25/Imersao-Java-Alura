@@ -403,7 +403,7 @@ Criação do link e extrator de conteudo da nova API
 
     - Lendo linguagem especificada por id
 
-        @GetMapping("/linguagens/{id}")
+         @GetMapping("/linguagens/{id}")
         public Linguagem obterLinguagemPorId(@PathVariable String id){
             return repositorio.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
@@ -411,7 +411,7 @@ Criação do link e extrator de conteudo da nova API
 
     - Atualizando linguagem por id
 
-        @PutMapping("/linguagens/{id}")
+         @PutMapping("/linguagens/{id}")
         public Linguagem atualizarLinguagemPorId(@PathVariable String id , @RequestBody Linguagem linguagem){
             repositorio.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
@@ -423,7 +423,7 @@ Criação do link e extrator de conteudo da nova API
 
     - Deletando linguagem por id
 
-        @DeleteMapping("/linguagens/{id}")
+         @DeleteMapping("/linguagens/{id}")
         public void excluirLinguagem(@PathVariable String id){
             repositorio.deleteById(id);
         }
@@ -432,13 +432,13 @@ Criação do link e extrator de conteudo da nova API
 
     - Criando método de busca ordenada
 
-        public interface LinguagemRepository extends MongoRepository<Linguagem, String>{
+         public interface LinguagemRepository extends MongoRepository<Linguagem, String>{
             List<Linguagem> findByOrderByRanking();
         }
 
     - Utilizando o novo método na busca  ~~.findAll();~~
 
-        @GetMapping("/linguagens") // Buscando tds as linguagens
+         @GetMapping("/linguagens") // Buscando tds as linguagens
         public List<Linguagem> obterLinguagens(){
             List<Linguagem> linguagens = repositorio.findByOrderByRanking();
             return linguagens;
@@ -447,7 +447,7 @@ Criação do link e extrator de conteudo da nova API
 
 3. Alterando status da linguagem criada
 
-        @PostMapping("/linguagens") // Adicionando linguagem
+         @PostMapping("/linguagens") // Adicionando linguagem
         public ResponseEntity<Linguagem> cadastrarLinguagem(@RequestBody Linguagem linguagem){
             Linguagem newSave = repositorio.save(linguagem);
             return new ResponseEntity<>(newSave, HttpStatus.CREATED);
