@@ -397,7 +397,7 @@ Criação do link e extrator de conteudo da nova API
             
         }
 
-### Desafios
+### Desáfios
 
 1. Finalizando CRUD([LinguagemController.java](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula4/linguagens.api/src/main/java/com/wmarques/linguagens/api/LinguagemController.java)) das linguagens na API
 
@@ -430,13 +430,13 @@ Criação do link e extrator de conteudo da nova API
 
 2. Ordenando a lista de linguagens
 
-    - Criando m�todo de busca ordenada
+    - Criando método de busca ordenada
 
         public interface LinguagemRepository extends MongoRepository<Linguagem, String>{
             List<Linguagem> findByOrderByRanking();
         }
 
-    - Utilizando o novo m�todo na busca  ~~.findAll();~~
+    - Utilizando o novo método na busca  ~~.findAll();~~
 
         @GetMapping("/linguagens") // Buscando tds as linguagens
         public List<Linguagem> obterLinguagens(){
