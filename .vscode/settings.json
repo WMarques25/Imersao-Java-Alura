@@ -1,0 +1,6 @@
+{
+    "java.project.sourcePaths": [
+        "alura-stickers/src",
+        "linguagens.api/src/main/java/com/wmarques/linguagens/api"
+    ]
+}

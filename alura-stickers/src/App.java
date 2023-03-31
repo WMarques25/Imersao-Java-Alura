@@ -7,7 +7,7 @@ public class App {
     public static void main(String[] args) throws Exception {
 
         // fazer uma conexão HTTP e buscar os top 3 Séries de acordo com IMDB
-        API api = API.NASA_APOD;
+        API api = API.WELL_LINGUAGENS;
 
         String url = api.getUrl();
         ExtratorConteudo extrator = api.getExt();

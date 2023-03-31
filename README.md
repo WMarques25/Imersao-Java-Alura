@@ -12,7 +12,7 @@ Utilizando Java no VS Code para acessar e consumir API do IMDB (Top 250 Filmes).
 
 1. Utilizando End-Point para acessar as top séries do site.
 
-            String url = "https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/TopTVs.json";
+        String url = "https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/TopTVs.json";
 
 2. Configurando a estética da apresentação das informações.
 
@@ -160,10 +160,12 @@ Criando uma [interface](https://github.com/WMarques25/Imersao-Java-Alura/blob/Au
         String API_KEY = System.getenv("API_KEY");
         System.out.println(API_KEY);
 
-        // String url = "https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/MostPopularTVs.json";
+        // String url = "https://raw.githubusercontent.com/alura-cursos
+            /imersao-java-2-api/main/MostPopularTVs.json";
         // ExtratorConteudo extrator = new ExtratorConteudoIMDB();
 
-        String url = "https://api.nasa.gov/planetary/apod?api_key=" + API_KEY + "&start_date=2022-07-4&end_date=2022-07-10";
+        String url = "https://api.nasa.gov/planetary/apod?api_key=" 
+            + API_KEY + "&start_date=2022-07-4&end_date=2022-07-10";
         ExtratorConteudo extrator = new ExtratorConteudoNasa();
 
 3. Criação de uma lista de conteudos
@@ -225,7 +227,7 @@ Criando uma [interface](https://github.com/WMarques25/Imersao-Java-Alura/blob/Au
     Alteração do [ClienteHttp](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula3/alura-stickers/src/ClienteHttp.java).
 
         catch(IOException | InterruptedException ex){
-            throw new ClienteHttpExeption("\nErro na consulta da URL\n(╯°□°)╯︵ ┻━┻\n");
+            throw new ClienteHttpExeption("\nErro na consulta da URL\n(╯°□°)╯︵ ┻┝┻\n");
 
         }
 
@@ -246,9 +248,13 @@ Criando uma [interface](https://github.com/WMarques25/Imersao-Java-Alura/blob/Au
 4. Utilizando uma enum [API](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula3/alura-stickers/src/API.java) para guardar as urls das APIs.
 
         public enum API {
-            IMDB_TOP_TVS("https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/Top250TVs.json", new ExtratorConteudoIMDB()),
-            NASA_APOD("https://api.nasa.gov/planetary/apod?api_key=" + System.getenv("API_KEY") + "&start_date=2022-07-4&end_date=2022-07-10", new ExtratorConteudoNasa()),
-            IMDB_POPULAR_TVS("https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/MostPopularTVs.json", new ExtratorConteudoIMDB());
+            IMDB_TOP_TVS("https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api
+                /main/Top250TVs.json", new ExtratorConteudoIMDB()),
+            NASA_APOD("https://api.nasa.gov/planetary/apod?api_key=" + System.getenv("API_KEY") 
+                + "&start_date=2022-07-4&end_date=2022-07-10", 
+                new ExtratorConteudoNasa()),
+            IMDB_POPULAR_TVS("https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api
+                /main/MostPopularTVs.json", new ExtratorConteudoIMDB());
 
             private String url;
             private ExtratorConteudo ext;
@@ -268,3 +274,40 @@ Criando uma [interface](https://github.com/WMarques25/Imersao-Java-Alura/blob/Au
             }
 
         }
+
+## Aula 4
+
+Criação da api [Linguagens.api](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula4/linguagens.api/src/main/java/com/wmarques/linguagens/api/) com Spring, Mongodb e utilizando Postman para testes
+
+Criação do link e extrator de conteudo da nova API
+
+- [API.java](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula4/alura-stickers/src/API.java)
+
+        WELL_LINGUAGENS("http://localhost:8080/linguagens",
+            new ExtratorConteudoLinguagens());
+
+- [ExtratorConteudoLinguagens.java](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula4/alura-stickers/src/ExtratorConteudoLinguagens.java)
+
+        public class ExtratorConteudoLinguagens implements ExtratorConteudo {
+
+            public List<Conteudo> extrairConteudos(String json){
+
+                // extrair só os dados que interessam (titulo, poster, classificação)
+                var parser = new JsonParser();
+                List<Map<String, String>> listaDeAtributos = parser.parse(json);
+
+                return listaDeAtributos.stream()
+                    .map(atributos -> new Conteudo(atributos.get("title"), atributos.get("image")))
+                    .toList();
+
+            }
+
+        }
+
+### API
+
+- [Linguagem.java](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula4/linguagens.api/src/main/java/com/wmarques/linguagens/api/Linguagem.java)
+
+- [LinguagemController.java](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula4/linguagens.api/src/main/java/com/wmarques/linguagens/api/LinguagemController.java)
+
+- [LinguagemRepository.java](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula4/linguagens.api/src/main/java/com/wmarques/linguagens/api/LinguagemRepository.java)
