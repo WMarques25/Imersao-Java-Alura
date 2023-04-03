@@ -453,3 +453,17 @@ Criação do link e extrator de conteudo da nova API
                     return new ResponseEntity<>(newSave, HttpStatus.CREATED);
 
                 }
+
+## Aula 5
+
+Criando imagem da API com Docker
+
+-[Dockerfile](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula5/linguagens.api/Dockerfile)
+
+Deploy da API usando fly.io
+
+- [URL da API](https://lingwmarques.fly.dev/linguagens)
+
+Alteração da url no enum de [APIs](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula5/alura-stickers/src/API.java)
+
+        WELL_LINGUAGENS("https://lingwmarques.fly.dev/linguagens", new ExtratorConteudoLinguagens());

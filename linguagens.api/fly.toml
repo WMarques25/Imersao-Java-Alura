@@ -1,0 +1,27 @@
+# fly.toml file generated for lingwmarques on 2023-04-03T10:39:07-03:00
+
+app = "lingwmarques"
+kill_signal = "SIGINT"
+kill_timeout = 5
+primary_region = "gru"
+
+[build]
+  image = "wmarques25/linguagens:latest"
+
+[[services]]
+  protocol = "tcp"
+  internal_port = 8080
+  processes = ["app"]
+
+  [[services.ports]]
+    port = 80
+    handlers = ["http"]
+    force_https = true
+
+  [[services.ports]]
+    port = 443
+    handlers = ["tls", "http"]
+  [services.concurrency]
+    type = "connections"
+    hard_limit = 25
+    soft_limit = 20
