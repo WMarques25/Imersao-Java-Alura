@@ -1,14 +1,14 @@
 # Repositório de estudos da #ImersaoJava da Alura
 
-## Aulas  - [Aula 1](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula1) - [Aula 2](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula2) - [Aula 3](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula3) - [Aula 4](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula4)
+## Aulas  - [Aula 1](https://github.com/WMarques25/Imersao-Java-Alura/tree/Aula1) - [Aula 2](https://github.com/WMarques25/Imersao-Java-Alura/tree/Aula2) - [Aula 3](https://github.com/WMarques25/Imersao-Java-Alura/tree/Aula3) - [Aula 4](https://github.com/WMarques25/Imersao-Java-Alura/tree/Aula4)
 
 ## Aula 1
 
 Utilizando Java no VS Code para acessar e consumir API do IMDB (Top 250 Filmes).
 
-[App](https://github.com/WMarques25/Imersao-Java-Alura/blob/main/alura-stickers/src/App.java) - Aplicação principal, acessando e exibindo os dados da API.
+[App](https://github.com/WMarques25/Imersao-Java-Alura/tree/main/alura-stickers/src/App.java) - Aplicação principal, acessando e exibindo os dados da API.
 
-[Parser](https://github.com/WMarques25/Imersao-Java-Alura/blob/main/alura-stickers/src/JsonParser.java) - Classe para "parsear", filtrando as informações do arquivo Json
+[Parser](https://github.com/WMarques25/Imersao-Java-Alura/tree/main/alura-stickers/src/JsonParser.java) - Classe para "parsear", filtrando as informações do arquivo Json
 
 ### Desafios Aula 1
 
@@ -42,7 +42,7 @@ Utilizando Java no VS Code para acessar e consumir API do IMDB (Top 250 Filmes).
 
 Importando imagens(arquivo local ou url), transformando em uma nova imagem .png com um texto em fundo transparente.
 
-[Gerador de Stickers](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula2/alura-stickers/src/ZapStickers.java) - Classe geradora de Stickers para WhatsApp.
+[Gerador de Stickers](https://github.com/WMarques25/Imersao-Java-Alura/tree/Aula2/alura-stickers/src/ZapStickers.java) - Classe geradora de Stickers para WhatsApp.
 
 ### Desafios Aula 2
 
@@ -133,23 +133,23 @@ Importando imagens(arquivo local ou url), transformando em uma nova imagem .png 
 
 ## Aula 3
 
-Refatorando o [App](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula3/alura-stickers/src/App.java), transferindo parte do código em novas classes.
+Refatorando o [App](https://github.com/WMarques25/Imersao-Java-Alura/tree/Aula3/alura-stickers/src/App.java), transferindo parte do código em novas classes.
 
 Criando classes para:
 
-- [Conteudo](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula3/alura-stickers/src/Conteudo.java)
+- [Conteudo](https://github.com/WMarques25/Imersao-Java-Alura/tree/Aula3/alura-stickers/src/Conteudo.java)
 
-- [ClienteHttp](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula3/alura-stickers/src/ClienteHttp.java)
+- [ClienteHttp](https://github.com/WMarques25/Imersao-Java-Alura/tree/Aula3/alura-stickers/src/ClienteHttp.java)
 
-Criando uma [interface](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula3/alura-stickers/src/ExtratorConteudo.java) para as novas classes extratoras:
+Criando uma [interface](https://github.com/WMarques25/Imersao-Java-Alura/tree/Aula3/alura-stickers/src/ExtratorConteudo.java) para as novas classes extratoras:
 
-- [ExtratorConteudoIMDB](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula3/alura-stickers/src/ExtratorConteudoIMDB.java)
+- [ExtratorConteudoIMDB](https://github.com/WMarques25/Imersao-Java-Alura/tree/Aula3/alura-stickers/src/ExtratorConteudoIMDB.java)
 
-- [ExtratorConteudoNasa](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula3/alura-stickers/src/ExtratorConteudoNasa.java)
+- [ExtratorConteudoNasa](https://github.com/WMarques25/Imersao-Java-Alura/tree/Aula3/alura-stickers/src/ExtratorConteudoNasa.java)
 
 ### Modificado da Aula 2
 
-#### Algumas modificações do [App](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula3/alura-stickers/src/App.java)
+#### Algumas modificações do [App](https://github.com/WMarques25/Imersao-Java-Alura/tree/Aula3/alura-stickers/src/App.java)
 
 1. Criado a classe ClienteHttp, alteramos todo o código que buscava os dados em .json para im objeto do tipo ClienteHttp.
 
@@ -191,7 +191,7 @@ Criando uma [interface](https://github.com/WMarques25/Imersao-Java-Alura/blob/Au
             System.out.println("\n");
         }
 
-#### Algumas modificações do [Gerador de Figurinhas](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula3/alura-stickers/src/ZapStickers.java)
+#### Algumas modificações do [Gerador de Figurinhas](https://github.com/WMarques25/Imersao-Java-Alura/tree/Aula3/alura-stickers/src/ZapStickers.java)
 
 1. Retirada a sobreposição de selos("aprovado"/"reprovado").
 
@@ -215,7 +215,7 @@ Criando uma [interface](https://github.com/WMarques25/Imersao-Java-Alura/blob/Au
 
     .~~getU~~**u**rlImage()
 
-2. Criando classe [ClienteHttpException](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula3/alura-stickers/src/ClienteHttpException.java).
+2. Criando classe [ClienteHttpException](https://github.com/WMarques25/Imersao-Java-Alura/tree/Aula3/alura-stickers/src/ClienteHttpException.java).
 
         public class ClienteHttpExeption extends RuntimeException{
 
@@ -226,7 +226,7 @@ Criando uma [interface](https://github.com/WMarques25/Imersao-Java-Alura/blob/Au
 
         }
 
-    Alteração do [ClienteHttp](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula3/alura-stickers/src/ClienteHttp.java).
+    Alteração do [ClienteHttp](https://github.com/WMarques25/Imersao-Java-Alura/tree/Aula3/alura-stickers/src/ClienteHttp.java).
 
         catch(IOException | InterruptedException ex){
             throw new ClienteHttpExeption("\nErro na consulta da URL\n(╯°□°)╯︵ ┻┝┻\n");
@@ -247,7 +247,7 @@ Criando uma [interface](https://github.com/WMarques25/Imersao-Java-Alura/blob/Au
 
         }
 
-4. Utilizando uma enum [API](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula3/alura-stickers/src/API.java) para guardar as urls das APIs.
+4. Utilizando uma enum [API](https://github.com/WMarques25/Imersao-Java-Alura/tree/Aula3/alura-stickers/src/API.java) para guardar as urls das APIs.
 
         public enum API {
             IMDB_TOP_TVS("https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api
@@ -279,16 +279,16 @@ Criando uma [interface](https://github.com/WMarques25/Imersao-Java-Alura/blob/Au
 
 ## Aula 4
 
-Criação da api [Linguagens.api](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula4/linguagens.api/src/main/java/com/wmarques/linguagens/api/) com Spring, Mongodb e utilizando Postman para testes
+Criação da api [Linguagens.api](https://github.com/WMarques25/Imersao-Java-Alura/tree/Aula4/linguagens.api/src/main/java/com/wmarques/linguagens/api/) com Spring, Mongodb e utilizando Postman para testes
 
 Criação do link e extrator de conteudo da nova API
 
-- [API.java](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula4/alura-stickers/src/API.java)
+- [API.java](https://github.com/WMarques25/Imersao-Java-Alura/tree/Aula4/alura-stickers/src/API.java)
 
         WELL_LINGUAGENS("http://localhost:8080/linguagens",
             new ExtratorConteudoLinguagens());
 
-- [ExtratorConteudoLinguagens.java](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula4/alura-stickers/src/ExtratorConteudoLinguagens.java)
+- [ExtratorConteudoLinguagens.java](https://github.com/WMarques25/Imersao-Java-Alura/tree/Aula4/alura-stickers/src/ExtratorConteudoLinguagens.java)
 
         public class ExtratorConteudoLinguagens implements ExtratorConteudo {
 
@@ -308,7 +308,7 @@ Criação do link e extrator de conteudo da nova API
 
 ### API
 
-- [Linguagem.java](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula4/linguagens.api/src/main/java/com/wmarques/linguagens/api/Linguagem.java)
+- [Linguagem.java](https://github.com/WMarques25/Imersao-Java-Alura/tree/Aula4/linguagens.api/src/main/java/com/wmarques/linguagens/api/Linguagem.java)
 
         package com.wmarques.linguagens.api;
 
@@ -350,7 +350,7 @@ Criação do link e extrator de conteudo da nova API
 
         }
 
-- [LinguagemController.java](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula4/linguagens.api/src/main/java/com/wmarques/linguagens/api/LinguagemController.java)
+- [LinguagemController.java](https://github.com/WMarques25/Imersao-Java-Alura/tree/Aula4/linguagens.api/src/main/java/com/wmarques/linguagens/api/LinguagemController.java)
 
         package com.wmarques.linguagens.api;
 
@@ -388,7 +388,7 @@ Criação do link e extrator de conteudo da nova API
             }
         }
 
-- [LinguagemRepository.java](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula4/linguagens.api/src/main/java/com/wmarques/linguagens/api/LinguagemRepository.java)
+- [LinguagemRepository.java](https://github.com/WMarques25/Imersao-Java-Alura/tree/Aula4/linguagens.api/src/main/java/com/wmarques/linguagens/api/LinguagemRepository.java)
 
         package com.wmarques.linguagens.api;
 
@@ -401,7 +401,7 @@ Criação do link e extrator de conteudo da nova API
 
 ### Desáfios
 
-1. Finalizando CRUD([LinguagemController.java](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula4/linguagens.api/src/main/java/com/wmarques/linguagens/api/LinguagemController.java)) das linguagens na API
+1. Finalizando CRUD([LinguagemController.java](https://github.com/WMarques25/Imersao-Java-Alura/tree/Aula4/linguagens.api/src/main/java/com/wmarques/linguagens/api/LinguagemController.java)) das linguagens na API
 
     - Lendo linguagem especificada por id
 
@@ -460,12 +460,12 @@ Criação do link e extrator de conteudo da nova API
 
 Criando imagem da API com Docker
 
--[Dockerfile](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula5/linguagens.api/Dockerfile)
+-[Dockerfile](https://github.com/WMarques25/Imersao-Java-Alura/tree/Aula5/linguagens.api/Dockerfile)
 
 Deploy da API usando fly.io
 
 - [URL da API](https://lingwmarques.fly.dev/linguagens)
 
-Alteração da url no enum de [APIs](https://github.com/WMarques25/Imersao-Java-Alura/blob/Aula5/alura-stickers/src/API.java)
+Alteração da url no enum de [APIs](https://github.com/WMarques25/Imersao-Java-Alura/tree/Aula5/alura-stickers/src/API.java)
 
         WELL_LINGUAGENS("https://lingwmarques.fly.dev/linguagens", new ExtratorConteudoLinguagens());
