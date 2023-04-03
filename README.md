@@ -1,5 +1,7 @@
 # Repositório de estudos da #ImersaoJava da Alura
 
+## Aulas  - [Aula 1](https://github.com/WMarques25/Imersao-Java-Alura/tree/Aula1) - [Aula 3](https://github.com/WMarques25/Imersao-Java-Alura/tree/Aula3) - [Aula 4](https://github.com/WMarques25/Imersao-Java-Alura/tree/Aula4) - [Aula 5](https://github.com/WMarques25/Imersao-Java-Alura/tree/Aula5)
+
 ## Aula 1
 
 Utilizando Java no VS Code para acessar e consumir API do IMDB (Top 250 Filmes).
